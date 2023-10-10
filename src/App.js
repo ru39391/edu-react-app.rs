@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  // пример декларативного стиля
-  const [currYear, setCurrYear] = useState('');
+  // пример императивного стиля
+  const setLogoSrc = (url) => {
+    document.querySelector('.App-logo').src = url;
+  }
 
-  const getCurrYear = () => {
+  const setCurrYear = () => {
     const currDate = new Date();
-    return currDate.getFullYear();
+    document.querySelector('.current-year').textContent = currDate.getFullYear();
   }
 
   useEffect(() => {
-    setCurrYear(getCurrYear());
+    setLogoSrc(logo);
+    setCurrYear();
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="#" className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -30,7 +33,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>{currYear}</p>
+        <p className="current-year"></p>
       </header>
     </div>
   );
