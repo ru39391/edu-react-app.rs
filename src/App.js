@@ -1,8 +1,19 @@
+import { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const currDate = new Date();
+  // пример декларативного стиля
+  const [currYear, setCurrYear] = useState('');
+
+  const getCurrYear = () => {
+    const currDate = new Date();
+    return currDate.getFullYear();
+  }
+
+  useEffect(() => {
+    setCurrYear(getCurrYear());
+  }, []);
 
   return (
     <div className="App">
@@ -19,7 +30,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>{currDate.getFullYear()}</p>
+        <p>{currYear}</p>
       </header>
     </div>
   );
